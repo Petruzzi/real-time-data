@@ -5,7 +5,7 @@ import com.ale.userqueryservice.model.UserDto;
 import com.ale.userqueryservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.streams.kstream.KStream;
+//import org.apache.kafka.streams.kstream.KStream;
 import org.reactivestreams.Publisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,16 +35,16 @@ public class UserKafkaConsumer {
                 .toReactivePublisher();
     }
 
-    @Bean("userEventService")
-    public Consumer<KStream<String, UserDto>> userEventService() {
-        return kStream -> kStream.foreach((key, user) -> {
-            userService.addUserToCb(user).subscribe();
-            log.info(
-                    String.format("User added event received:  %s, %s,%s ",
-                            user.getFirstName(),
-                            user.getLastName(),
-                            user.getEmail())
-            );
-        });
-    }
+//    @Bean("userEventService")
+//    public Consumer<KStream<String, UserDto>> userEventService() {
+//        return kStream -> kStream.foreach((key, user) -> {
+//            userService.addUserToCb(user).subscribe();
+//            log.info(
+//                    String.format("User added event received:  %s, %s,%s ",
+//                            user.getFirstName(),
+//                            user.getLastName(),
+//                            user.getEmail())
+//            );
+//        });
+//    }
 }
